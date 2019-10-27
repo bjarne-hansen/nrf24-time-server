@@ -77,6 +77,10 @@ popular on a number of site having articles about NRF24L01 transceivers.
 The `NRF24.py` code included here is based on code found here: 
 https://raspberrypi.stackexchange.com/questions/77290/nrf24l01-only-correctly-retrieving-status-and-config-registers
 
+The original copyright holder, which is the same author as for the pigpiod daemon, has adviced
+me that the NRF24.py code can be considered Public Domain, and be amended and distributed for any
+purpose whatsoever.
+
 The `pigpio.py` code is taken from the python-pigpio/python3-pigpio distribution.
 
 The ``rf24-time-server.py`` can run as a daemon publishing date/time information
@@ -116,5 +120,8 @@ The daemon can be started using the command line:
 The daemon should be started using sudo.
 
 A ``nrf24-time-client`` example running on an Arduino Nano can be found at:
-https:// ...
+https://github.com/bjarne-hansen/nrf24-time-client
+
+This software is published under a "Zero Clause BSD" license. Please refer to the LICENSE file.
+
 
