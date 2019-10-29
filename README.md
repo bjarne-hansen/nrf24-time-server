@@ -1,4 +1,4 @@
-# Time Publishing Daemon
+# Raspberry Pi Time Publishing Daemon
 
 ## Background
 Several constrained IoT devices are too simple to be connected to the 
