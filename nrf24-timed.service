@@ -1,0 +1,3 @@
+[Unit]
+Description=Time server publishing current date/time via NRF24L01.
+
