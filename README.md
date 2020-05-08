@@ -4,21 +4,21 @@
 Several constrained IoT devices are too simple to be connected to the 
 Internet to get the current date/time via NTP.
 
-This module is a daemon that allows a Raspberry PI, which can easily be 
-connected to the Internet and synchronize date and time using NTP, to 
+This module is a daemon that allows (for example) a Raspberry Pi, which can
+easily be connected to the Internet and synchronize date and time using NTP, to
 publish the current date/time information via a NRF24L01 module.
 
 IoT devices with a NRF24L01 transceiver, that is within range of the 
 Raspberry PI can then listen on the fixed address "DTCLN" and receive
-the current year, month, day, hour, minute, second.
+the current year, month, day, hour, minute, second, and weekday.
 
 Such client may subscribe to the current date/time information on each 
 "reboot", or they may store the date/time information in a RTC and then
 synchronize periodically to maintain a relatively precise notion of the 
-current time.  
+current time.
 
-The daemon publishes the current date/time information each 5 seconds per
-default.
+The date/time daemon publishes the current date/time information every 5 
+seconds per default.
 
 The Time Publishing Daemon is written in Python and uses the **pigpiod** deamon
 that allows easy access to the GPIO pins of the Raspberry PI.  Please refer to
@@ -47,11 +47,11 @@ PI Zero Wireless is:
     +---+----------------------
     |       *    *
     +---+
-    |7|8|   purple |
+    |7|8|   purple |   -
     +-+-+
     |5|6|   green  |  blue
     +-+-+
-    |3|4|   orange | yellow
+    |3|4|   yellow | orange
     +-+-+   
     |1|2|   black  |  red
     +-+-+----------------------
@@ -61,8 +61,8 @@ PI Zero Wireless is:
     PIN DESC  COLOR           PIN  GPIO
     1   GND   black   <--->   6     -
     2   3.3V  red     <--->   1     - 
-    3   CE    orange  <--->   22    25
-    4   CSN   yellow  <--->   24     8
+    3   CE    yellow  <--->   22    25
+    4   CSN   orange  <--->   24     8
     5   SCKL  green   <--->   23    11   
     6   MOSI  blue    <--->   19    10 
     7   MISO  purple  <--->   21     9 
@@ -70,7 +70,7 @@ PI Zero Wireless is:
 
 I tend to always use the same colouring of the connecting cables as this helps
 me to easily keep track of the wiring, and the above color coding seems to be
-popular on a number of site having articles about NRF24L01 transceivers.
+popular on a number of sites having articles about NRF24L01 transceivers.
 
 ### Software
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=NRF24 date/time server.
+
+[Service]
+Type=notify
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/bjh/prj/nrf24-time-server/venv/bin/python /home/bjh/prj/nrf24-time-server/src/nrf24_timed.py
+
+[Install]
+WantedBy=default.target
