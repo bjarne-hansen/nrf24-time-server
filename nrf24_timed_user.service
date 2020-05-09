@@ -1,0 +1,37 @@
+
+#
+# This systemd service file is meant for being used during development using you personal account.
+# 
+# Service files are copied to ~/.config/systemd/user
+# The systemctl and journalctl comamands are used with the correspinding user options
+#
+# cp nrf24_timed_user.service ~/.config/systemd/user
+# systemctl --user daemon-reload
+# systemctl --user list-unit-files
+# systemctl --user start nrf24_timed_user
+# systemctl --user reload nrf24_timed_user
+# systemctl --user restart nrf24_timed_user
+# systemctl --user stop nrf24_timed_user
+#
+# journalctl --user-unit nrf24*
+#
+# Make sure to change the paths below as appropriate.
+#
+# If you have a 'prj' directory for your projects like me, and you habe cloned the project into
+# 'nrf24-time-server' from github.com you will just need to replace the '$username' markers below.
+# This can be done with a simple 'sed' expression, for example:
+#
+# $ cat nrf24_timed_user.service | sed s/\$username/jdoe/g
+#
+[Unit]
+Description=NRF24 date/time server.
+
+[Service]
+Type=notify
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=/home/$username/prj/nrf24-time-server
+ExecStart=/home/$username/prj/nrf24-time-server/venv/bin/python /home/$username/prj/nrf24-time-server/src/nrf24_timed.py
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=default.target
