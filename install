@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "Simple installation script for nrf24_timed daemon."
+
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root."
+   echo "Run 'sudo ./install'"
+   echo "As always, be sceptical when being asked to run something as root, make sure to check the script first." 
+   exit 1
+fi
+
+# Copy files to bin
+echo 'Copying binaries ...'
+mkdir -p /usr/local/bin/nrf24_timed
+cp src/nrf24_timed.py /usr/local/bin/nrf24_timed
+cp requirements.txt /usr/local/bin/nrf24_timed
+
+# Copy files to etc
+echo 'Copying configuration ...'
+mkdir -p /usr/local/etc
+cp etc/nrf24_timed.ini /usr/local/etc
+
+# Copy files to lib
+echo 'Copying systemd service file'
+mkdir -p /usr/local/lib/systemd/system
+cp nrf24_timed.service /usr/local/lib/systemd/system
+
+# Install the virtuel envionment
+echo 'Installing python virtual envirionment ...'
+cd /usr/local/bin/nrf24_timed
+virtualenv venv
+source venv/bin/activate
+echo 'Installing requirements ...'
+python -m pip install -r requirements.txt
+deactivate
+cd -
+
+echo 'Relaoding daemons ...'
+systemctl daemon-reload
+systemctl status nrf24_timed
+
+
+
+

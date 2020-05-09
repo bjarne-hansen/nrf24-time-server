@@ -4,7 +4,9 @@ Description=NRF24 date/time server.
 [Service]
 Type=notify
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/bjh/prj/nrf24-time-server/venv/bin/python /home/bjh/prj/nrf24-time-server/src/nrf24_timed.py
+WorkingDirectory=/usr/local/bin/nrf24_timed
+ExecStart=/usr/local/bin/nrf24_timed/venv/bin/python /usr/local/bin/nrf24_timed/nrf24_timed.py /usr/local/etc/nrf24_timed.ini
+ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]
 WantedBy=default.target
