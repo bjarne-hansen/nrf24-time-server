@@ -80,7 +80,7 @@ class NRF24TimeServer:
        	    # Tell that we are ready ...
             self.status('Ready ...')
         except Exception as ex:
-            status('Error. Failed to reload.')
+            self.status('Error. Failed to reload.')
             traceback.print_exc()
 
 
