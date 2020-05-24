@@ -108,7 +108,7 @@ class NRF24TimeServer:
                 self.status("Publishing ...", log=False)
                 now = datetime.utcnow()
                 print(datetime.isoformat(now, timespec='milliseconds'))
-                payload = list(struct.pack("<B4sHBBBBBB", 0xfe, bytes('TIME', 'ascii'), now.year, now.month, now.day, now.hour, now.minute, now.second, now.weekday()))
+                payload = list(struct.pack("<B4sHBBBBBB", 0xfe, bytes('TIME', 'ascii'), now.year, now.month, now.day, now.hour, now.minute, now.second, now.isoweekday()))
                 self._nrf.send(payload)
                 self.status("Sleeping ...", log=False)
                 published = time.monotonic()
